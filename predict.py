@@ -53,6 +53,8 @@ def predict_content(text):
         "Hate Class": hate_labels_text[hat_pred]
     }
     
-text = 'i would think that whomever would be lucky enough to stay in this suite must feel like it is the most romantic place on earth,2'
+text = "im feeling a little like a damaged tree and that my roots are a little out of wack"
 prediction = predict_content(text)
-print(prediction)
+print(f'Emotion Index : {prediction["Emotion Index"]}')
+print(f'Violence Category : {prediction["Violence Category"]}')
+print(f'Hate Class : {prediction["Hate Class"]}')
