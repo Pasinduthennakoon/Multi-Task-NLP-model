@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-st.title("🛡️ Content Safety Classifier")
+st.title("Content Safety Classifier")
 user_input = st.text_area("Enter text to analyze:")
 
 if st.button("Predict"):
@@ -11,11 +11,7 @@ if st.button("Predict"):
         if response.status_code == 200:
             res = response.json()
             
-            # This displays the raw dictionary without any extra UI components
             st.json(res)
-            
-            # OR, if you want it to look like a simple code block:
-            # st.code(res)
         else:
             st.error(f"Error: {response.status_code}")
     else:
