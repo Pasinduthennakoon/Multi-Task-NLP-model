@@ -5,10 +5,10 @@ import nltk
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 import numpy as np
 
-with open('util/tokernizer.pkl', 'rb') as f:
+with open('model/tokernizer.pkl', 'rb') as f:
     tokernizer = pickle.load(f)
     
-model = load_model('util/model.h5')
+model = load_model('model/model.h5')
 
 max_length = 50
 stop_words = set(stopwords.words('english'))
@@ -52,9 +52,3 @@ def predict_content(text):
         "Violence Category": violence_labels_text[vio_pred],
         "Hate Class": hate_labels_text[hat_pred]
     }
-    
-text = "im feeling a little like a damaged tree and that my roots are a little out of wack"
-prediction = predict_content(text)
-print(f'Emotion Index : {prediction["Emotion Index"]}')
-print(f'Violence Category : {prediction["Violence Category"]}')
-print(f'Hate Class : {prediction["Hate Class"]}')
