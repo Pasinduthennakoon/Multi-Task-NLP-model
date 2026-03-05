@@ -44,8 +44,8 @@ def predict_content(text):
     hat_pred = np.argmax(predictions[2])
     
     emotion_labels_text = ['sadness', 'joy', 'love', 'anger', 'fear', 'surprise']
-    violence_labels_text = ['sexual_violence', 'physical_violence', 'emotional_violence', 'harmful_traditional_practices', 'economic_violence']
-    hate_labels_text = ['offensive_speech', 'neither', 'hate_speech']
+    violence_labels_text = ['harmful_traditional_practices', 'physical_violence',  'economic_violence', 'emotional_violence', 'sexual_violence']
+    hate_labels_text = ['offensive_speech', 'hate_speech', 'neither']
     
     return {
         "Emotion Index": emotion_labels_text[emo_pred],
