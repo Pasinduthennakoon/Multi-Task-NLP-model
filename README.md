@@ -40,5 +40,17 @@ Multi-Task-NLP/
 ```bash
 git clone https://github.com/<your-username>/multi-task-nlp.git
 cd multi-task-nlp
-
+python -m venv env
+env\Scripts\activate
+pip install --upgrade pip
 pip install -r requirements.txt
+```
+
+### 2. Run the Project
+
+```bash
+uvicorn app:app --reload
+```
+
+- API will run at http://127.0.0.1:8000/predict
+- You can open index.html in your browser for the frontend.
