@@ -48,6 +48,9 @@ pip install -r requirements.txt
 
 ### 2. Run the Project
 
+
+- Run model.ipynb
+- Start FastAPI server
 ```bash
 uvicorn app:app --reload
 ```
