@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prediction Display</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background: #f5f5f5;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; /* center vertically */
+  }
+
+  .container {
+    width: 400px; /* max width */
+    text-align: center;
+  }
+
+  h1 {
+    color: #333;
+  }
+
+  textarea {
+    width: 100%;  /* fits container */
+    height: 80px;
+    font-size: 16px;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* includes padding in width */
+  }
+
+  button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+
+  pre {
+    background-color: #222;
+    color: #f8f8f2;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    width: 100%;
+    height: 200px;
+    box-sizing: border-box;
+    text-align: left;
+  }
+
+  .key { color: #66d9ef; }
+  .string { color: #e6db74; }
+  .number { color: #fd971f; }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1>AI Prediction</h1>
+
+  <textarea id="inputText" placeholder="Type your text here..."></textarea>
+  <button onclick="predict()">Predict</button>
+
+  <pre id="output">Prediction will appear here...</pre>
+</div>
+
+<script>
+async function predict() {
+    const text = document.getElementById("inputText").value;
+    if (!text) return alert("Please enter text");
+
+    try {
+        const response = await fetch("http://127.0.0.1:8000/predict", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ text: text })
+        });
+        const data = await response.json();
+
+        // Pretty-print JSON with colors
+        document.getElementById("output").innerHTML = syntaxHighlight(data);
+
+    } catch (err) {
+        console.error(err);
+        document.getElementById("output").textContent = "Error fetching prediction.";
+    }
+}
+
+// Function to add colors to JSON keys and values
+function syntaxHighlight(json) {
+    if (typeof json != 'string') {
+        json = JSON.stringify(json, undefined, 2);
+    }
+    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(?:\s*:)?|\b(true|false|null)\b|\b\d+(\.\d+)?\b)/g, function(match) {
+        let cls = 'number';
+        if (/^"/.test(match)) {
+            if (/:$/.test(match)) cls = 'key';
+            else cls = 'string';
+        } else if (/true|false|null/.test(match)) cls = 'number';
+        return '<span class="' + cls + '">' + match + '</span>';
+    });
+}
+</script>
+
+</body>
+</html>
