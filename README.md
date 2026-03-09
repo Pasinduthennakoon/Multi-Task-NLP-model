@@ -56,4 +56,4 @@ uvicorn app:app --reload
 ```
 
 - API will run at http://127.0.0.1:8000/predict
-- You can open index.html in your browser for the frontend.
+- You can open http://127.0.0.1:5500/index.html in your browser for the frontend.
