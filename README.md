@@ -41,7 +41,7 @@ Multi-Task-NLP/
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/<your-username>/multi-task-nlp.git
+git clone https://github.com/Pasinduthennakoon/multi-task-nlp.git
 cd multi-task-nlp
 python -m venv env
 env\Scripts\activate
