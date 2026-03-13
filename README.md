@@ -18,6 +18,8 @@ A web-based AI application that predicts **emotion**, **violence category**, and
 ## Project Structure
 
 
+```text
+
 Multi-Task-NLP/
 │
 ├── app.py # FastAPI backend server
@@ -29,6 +31,7 @@ Multi-Task-NLP/
 ├── requirements.txt # Python dependencies
 └── Dockerfile # Docker container instructions
 
+```
 
 ---
 
