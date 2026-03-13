@@ -21,15 +21,16 @@ A web-based AI application that predicts **emotion**, **violence category**, and
 ```text
 
 Multi-Task-NLP/
-│
-├── app.py # FastAPI backend server
-├── prediction_pipeline.py # Text preprocessing & model prediction
-├── model/
-│ ├── model.h5 # Trained Keras model
-│ └── tokernizer.pkl # Tokenizer for preprocessing
-├── index.html # Simple frontend interface
-├── requirements.txt # Python dependencies
-└── Dockerfile # Docker container instructions
+├── app.py                     # FastAPI backend server
+├── prediction_pipeline.py     # Text preprocessing & model prediction
+├── index.html                 # Simple frontend interface
+├── requirements.txt           # Python dependencies
+├── Dockerfile                 # Docker container instructions
+├── .dockerignore              # Files to exclude from Docker build
+├── .gitignore                 # Files to exclude from Git
+└── model/                     # Directory for model assets
+    ├── model.h5               # Trained Keras model
+    └── tokenizer.pkl          # Tokenizer for preprocessing
 
 ```
 
@@ -42,5 +43,20 @@ Multi-Task-NLP/
 ```bash
 git clone https://github.com/<your-username>/multi-task-nlp.git
 cd multi-task-nlp
-
+python -m venv env
+env\Scripts\activate
+pip install --upgrade pip
 pip install -r requirements.txt
+```
+
+### 2. Run the Project
+
+
+- Run model.ipynb
+- Start FastAPI server
+```bash
+uvicorn app:app --reload
+```
+
+- API will run at http://127.0.0.1:8000/predict
+- You can open http://127.0.0.1:5500/index.html in your browser for the frontend.
